@@ -140,11 +140,3 @@ hashouse<-V(g)$house_id %in% graph.edges[,2]
 plot(g,vertex.label=NA, vertex.color=ifelse(hashouse,"gray","black"),
      vertex.size=ifelse(hashouse,7,10))
 
-
-token='&$$app_token=qkzOjPpAsJDHAxBVNro7U82j5'
-endpoint="https://data.seattle.gov/api/views/q773-8un5/rows.json?accessType=DOWNLOAD"
-limit='$limit=10000'
-
-urlLink = paste0(endpoint,limit,token)
-library(jsonlite) 
-weather = fromJSON(urlLink)
