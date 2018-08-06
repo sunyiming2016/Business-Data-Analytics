@@ -1,0 +1,43 @@
+---
+title: "iris"
+output: html_document
+---
+```{r}
+data("iris")
+summary(iris)
+head(iris)
+```
+
+```{r}
+library(gmodels)
+library(class)
+library(ggvis)
+```
+
+see how the data looks like
+```{r}
+layer_points(ggvis(iris,x= ~Sepal.Length, y=~ Sepal.Width, fill=~ Species))
+layer_points(ggvis(iris,x= ~Petal.Length, y=~ Petal.Width, fill=~ Species))
+```
+
+```{r}
+#make a new dataset without column 5
+iris1<-iris[1:4]
+#patrition the dataset
+train.df <-iris1[1:115,]
+test.df <-iris1[116:150,]
+iris_train_label<- iris[1:115,5]
+iris_test_label<-iris[116:150,5]
+```
+
+knn
+```{r}
+iris_test_prediction <- knn(train=train.df,test=test.df,cl=iris_train_label,k=10)
+```
+
+test accuracy
+```{r}
+table(iris_test_label,iris_test_prediction)
+```
+
+
